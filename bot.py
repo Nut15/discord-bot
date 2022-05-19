@@ -4,13 +4,14 @@ import os
 from discord.ext import commands
 
 intents = discord.Intents.default()
+intents.message_content = True
 client = commands.Bot(command_prefix='-',intents=intents)
 
 #making sure the bot is online
 @client.event
 async def on_ready():
     print(f"{client.user} is online. use -")
-    await client.change_presence(activity=discord.Game(name="-help"))
+    await client.change_presence(activity=discord.Game(name="-help to get help"))
 
 #error box
 @client.event

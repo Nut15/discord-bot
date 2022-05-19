@@ -1,5 +1,4 @@
 import discord
-from discord.ui import Select, View
 import random
 from discord.ext import commands
 
@@ -17,6 +16,7 @@ async def test(ctx):
     await ctx.send("test")
     await ctx.message.delete()
 
+'''
 #command 'battle' in testing bot
 @bot.command(name='battle', brief='battle with someone.')
 async def battle(ctx, member=discord.Member):
@@ -30,4 +30,5 @@ async def battle(ctx, member=discord.Member):
     view = View()
     await ctx.send('which game do you want to do?', view=view)
 
+'''
 bot.run('OTc0NjQ5ODUyNzExNTM4NzE4.GANtid.92JPjb70WJHBgZ-BoZAJhVjxBATuPAaFWvBeLA')
