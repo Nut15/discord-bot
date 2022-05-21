@@ -39,7 +39,7 @@ async def test(ctx):
     await ctx.send("test")
 
 #command rock (rock scissors paper)
-@client.command(name='rock', brief='play rock paper scissors as a leisure activity!')
+@client.command(name='rock', brief='play rock paper scissors.', description = 'play rock paper scissors as a leisure activity! You will battle against the bot for some fun :)')
 async def rock(ctx):
     select = Select(
         placeholder = 'choose an action!',
@@ -62,8 +62,8 @@ async def rock(ctx):
     async def my_callback(interaction):
         hum = select.values[0]
         b = random.choice(['rock','paper','scissors'])
-        await ctx.send(f'you chose: {hum}')
-        await ctx.send(f'I chose: {b}')
+        await ctx.send(f'human chose: {hum}')
+        await ctx.send(f'bot chose: {b}')
 
         RULES = {
         ('scissors', 'paper'): 'scissors',
@@ -72,9 +72,9 @@ async def rock(ctx):
         }
         vic = RULES.get((hum,b), RULES.get((b,hum), "it's a tie :D"))
         if hum == vic:
-            await ctx.send('you won :)')
+            await ctx.send('human won :)')
         elif b == vic:
-            await ctx.send('I won!')
+            await ctx.send('bot won!')
         else:
             await ctx.send(vic)
 
