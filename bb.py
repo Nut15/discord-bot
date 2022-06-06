@@ -67,4 +67,19 @@ async def rock(ctx):
     view.add_item(select)
     await ctx.send(view=view, delete_after=4)
 
+#command 'send messages to specific channel'
+@bot.command(name='kill',brief='kill someone.',description='kill anyone you want. However the chance for them to die is 3%. Has cooldown for half a day (12 hrs). Kills are anonymous')
+@commands.cooldown(1, 1, commands.BucketType.user)
+async def kill(ctx, member:discord.Member):
+    chance = random.randint(0,32)
+    if chance == 2:
+        await ctx.send(f"@everyone {member.mention} killed.")
+        await ctx.message.delete()
+    else:
+        await ctx.send(f"{member.mention} did not die")
+        await ctx.message.delete()
+    channel = bot.get_channel(866922982281838616)
+    await channel.send(chance)
+
+
 bot.run('OTc0NjQ5ODUyNzExNTM4NzE4.GBYaPB.01qxusDMWdgS8M61NP-03mFB9zC-7PG7Tx-EbE')

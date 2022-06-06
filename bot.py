@@ -32,7 +32,6 @@ async def kill(ctx, member:discord.Member):
     else:
         await ctx.send(f"{member.mention} did not die")
         await ctx.message.delete()
-    print(chance)
 
 #test command: 'test'
 @client.command()
