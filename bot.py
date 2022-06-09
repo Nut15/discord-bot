@@ -25,7 +25,7 @@ async def on_command_error(ctx,error):
 @client.command(name='kill',brief='kill someone.',description='kill anyone you want. However the chance for them to die is 3%. Has cooldown for half a day (12 hrs). Kills are anonymous')
 @commands.cooldown(1, 43200, commands.BucketType.user)
 async def kill(ctx, member:discord.Member):
-    chance = random.randint(0,32)
+    chance = random.randint(0,20)
     if chance == 2:
         await ctx.send(f"@everyone {member.mention} killed.")
         await ctx.message.delete()
@@ -34,6 +34,7 @@ async def kill(ctx, member:discord.Member):
         await ctx.message.delete()
     channel = client.get_channel(866922982281838616)
     await channel.send(chance)
+
 #test command: 'test'
 @client.command()
 async def test(ctx):
