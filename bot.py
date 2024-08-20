@@ -4,6 +4,11 @@ import os
 from discord.ext import commands
 from discord.ui import Select, View
 
+#reading in the token
+with open("DiscordToken.txt") as f:
+    TOKEN = f.readline()
+print(TOKEN)
+
 intents = discord.Intents.default()
 intents.message_content = True
 client = commands.Bot(command_prefix='-',intents=intents)
@@ -85,4 +90,11 @@ async def rock(ctx):
     view.add_item(select)
     await ctx.send(view=view, delete_after=4)
 
-client.run("OTY4MzgzODQ5ODA3NjIyMTQ0.YmeDvQ.qrKSexMlEqK9POFF5GcdSi0ZJRc")
+#shut the system down!
+@client.command
+@commands.is_owner()
+async def shutdown(ctx):
+    await ctx.send("checks success")
+    await ctx.bot.logout()
+
+client.run(TOKEN)
