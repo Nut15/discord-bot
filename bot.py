@@ -7,7 +7,6 @@ from discord.ui import Select, View
 #reading in the token
 with open("DiscordToken.txt") as f:
     TOKEN = f.readline()
-print(TOKEN)
 
 intents = discord.Intents.default()
 intents.message_content = True
