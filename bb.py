@@ -5,6 +5,10 @@ import random
 from discord.ext import commands
 from discord.ui import View, Select, Button
 
+#reading in the token
+with open("MrHotDog.txt") as f:
+    TOKEN = f.readline()
+
 intents = discord.Intents.default()
 intents.message_content = True
 
@@ -104,4 +108,4 @@ async def kill(ctx, member:discord.Member):
 async def shogun(ctx):
     await ctx.send('Choose your action.')
 
-bot.run('OTc0NjQ5ODUyNzExNTM4NzE4.GBYaPB.01qxusDMWdgS8M61NP-03mFB9zC-7PG7Tx-EbE')
+bot.run(TOKEN)
