@@ -1,8 +1,9 @@
 from email.policy import default
+from itertools import tee
 import discord
 import random
 from discord.ext import commands
-from discord.ui import View, Select
+from discord.ui import View, Select, Button
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -15,11 +16,24 @@ async def on_ready():
     print('hot dogging')
     await bot.change_presence(activity=discord.Game(name=".help"))
 
+#error box
+@bot.event
+async def on_command_error(ctx,error):
+    if isinstance(error, commands.CommandOnCooldown):
+        await ctx.send(error)
+        await ctx.message.delete()
+
 #test command
 @bot.command()
 async def test(ctx):
+    tee = 'hello'
     await ctx.send("test")
     await ctx.message.delete()
+
+#testing
+@bot.command()
+async def abc(ctx):
+    print(tee)
 
 
 #command 'rock scissors paper' in testing bot
@@ -65,7 +79,11 @@ async def rock(ctx):
     select.callback = my_callback
     view = View()
     view.add_item(select)
-    await ctx.send(view=view, delete_after=4)
+    await ctx.send(view=view)
+    def check(res):
+      return ctx.author == res.user
+    while True:
+      res = await bot.wait_for("button_click",timeout=60, check=check)
 
 #command 'send messages to specific channel'
 @bot.command(name='kill',brief='kill someone.',description='kill anyone you want. However the chance for them to die is 3%. Has cooldown for half a day (12 hrs). Kills are anonymous')
@@ -81,5 +99,9 @@ async def kill(ctx, member:discord.Member):
     channel = bot.get_channel(866922982281838616)
     await channel.send(chance)
 
+#command 'shogun'
+@bot.command(name ='shogun')
+async def shogun(ctx):
+    await ctx.send('Choose your action.')
 
 bot.run('OTc0NjQ5ODUyNzExNTM4NzE4.GBYaPB.01qxusDMWdgS8M61NP-03mFB9zC-7PG7Tx-EbE')
